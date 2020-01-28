@@ -298,16 +298,15 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(maxval) {
-  let count = -1;
-  let max = maxval; 
-  return function(max){
-    if (count <= max){
-      return count = -1 
+function counterMakerWithLimit(maxVal) {
+  let count = -1; 
+  return function(){
+    if (count >= maxVal){
+      count = 0;
     }else{
       count++
-      return count
     }
+    return count
   }
 }
 
