@@ -182,9 +182,12 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
 function getFullNames(runners) {
-  return runners.forEach(function(runner){
-    return `${runner.last_name}, ${runner.first_name}`
+  let full = [];
+ runners.forEach(function(runner){
+    full.push(`${runner.last_name}, ${runner.first_name}`)
   })
+  return full
+
 }
 
 /**
@@ -220,7 +223,12 @@ function firstNamesAllCaps(runners) {
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
 function getRunnersByTShirtSize(runners, shirt) {
- 
+ let fits = runners.filter(function(runner){
+   if (runner.shirt_size == shirt){
+     return runner 
+   }
+ })
+ return fits
 }
 
 /**
