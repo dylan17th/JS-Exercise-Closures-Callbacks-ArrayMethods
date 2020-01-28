@@ -137,7 +137,7 @@ function processProduct(num1, num2, callback) {
  * should return "sad".
 */
 function processContains(item, list, callback) {
-  return callback(true)
+  return callback(list.includes(item))
 }
 
 /**
@@ -241,9 +241,16 @@ function getRunnersByTShirtSize(runners, shirt) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  let donations = []; 
+  runners.map(function(runner){
+    donations.push(runner.donation)})
+ let sumUp = donations.reduce(function(acc, current){
+    return acc += current
+  },0)
+  return sumUp
 }
+
 
 /////////////// CLOSURES ///////////////
 /////////////// CLOSURES ///////////////
