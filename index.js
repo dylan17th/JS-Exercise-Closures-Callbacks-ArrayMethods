@@ -89,7 +89,7 @@ function processLastItem(array, cb) {
 */
 function processSum(list, cb) {
   return cb(list.reduce(function(acc, current){
-    return acc + current
+    return acc += current
   },0));
 }
 
@@ -159,8 +159,10 @@ function processContains(item, list, callback) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree() {
-
+function processDuplicateFree(list, callback) {
+return callback(list.filter(function(item, pos) {
+      return list.indexOf(item) == pos;
+  }))
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -182,8 +184,8 @@ function processDuplicateFree() {
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
 function getFullNames(runners) {
-  let full = [];
- runners.forEach(function(runner){
+let full = [];
+  runners.forEach(function(runner){
     full.push(`${runner.last_name}, ${runner.first_name}`)
   })
   return full
@@ -242,9 +244,8 @@ function getRunnersByTShirtSize(runners, shirt) {
  * @returns a number which is the sum of the donations by all runners.
 */
 function tallyUpDonations(runners) {
-  let donations = []; 
-  runners.map(function(runner){
-    donations.push(runner.donation)})
+  let donations = runners.map(function(runner){
+   return runner.donation})
  let sumUp = donations.reduce(function(acc, current){
     return acc += current
   },0)
@@ -272,8 +273,9 @@ function counterMaker() {
   // BROKEN CODE STARTS
   let count = -1;
   return function () {
-    count = count + 1;
-    return count;
+    count++
+    return count
+  
   }
   // BROKEN CODE ENDS
 }
